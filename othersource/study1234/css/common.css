@@ -1,0 +1,93 @@
+* {margin:0;padding:0;}
+.hand{ cursor:pointer;}
+img{ border:0;}
+ol, ul {list-style: none;}
+a{text-decoration:none;}
+input{vertical-align:middle;}
+blockquote, body, button, dd, dl, dt, fieldset, figure, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, select, td, textarea, th, ul {
+    box-sizing: border-box;
+    font-family: Verdana,"Lantinghei SC","Hiragino Sans GB","Microsoft Yahei",Helvetica,arial,宋体,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+/*±ß¿ò*/
+.border_gray{border:solid 1px #ddd;}
+.borderT_none{border-top:0 !important;}
+.borderB_none{border-bottom:0 !important;}
+.border_none{border:none;}
+
+/*ÎÄ±¾¶ÔÆë·½Ê½*/
+.text_c{text-align:center;}
+.text_r{text-align: right;}
+.text_l{text-align: left!important;}
+
+/*ÄÚÍâ±ß¾à*/
+.push_all{margin:10px;}
+.push_t{margin-top:10px;}
+.push_r{margin-right:10px;}
+.push_b{margin-bottom:10px;}
+.push_l{margin-left:10px;}
+.push_t0{margin-top:-10px;}
+.fill_all{padding: 10px;}
+.fill_t{padding-top:10px;}
+.fill_r{padding-right:10px;}
+.fill_b{padding-bottom:10px;}
+.fill_l{padding-left:10px;}
+
+/*¸¡¶¯ºÍÇå³ý¸¡¶¯*/
+.clear_both{clear:both;}
+.float_l{float:left;}
+.float_r{float:right;}
+
+/*¶¨Î»*/
+.position_ab{position:absolute;}
+.position_re{position:relative;}
+
+/*ÏÔÊ¾Òþ²Ø*/
+.text_hide{text-indent:-9999px;}
+.tag_show{display:block!important;}
+.tag_hide{display:none!important;}
+.tag_c{margin:0 auto;}
+.tag_line{display:inline;}
+.over_hide{overflow:hidden;}
+.clearfix:after {
+    content: "."; 
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+}
+/* Hides from IE-mac \*/
+* html .clearfix {height: 1%;}
+/* End hide from IE-mac */
+
+/*×ÖÌåÑÕÉ«*/
+.orange{color:#e37513;}
+.orange2{color:#f90;}
+.orange3{color:#e30;}
+.blue{color:#1292cd;}
+.gray{color:#6d6d6d;}
+.oatmeal{color:#ccc;}
+.red{color:#f00;}
+.green{color:#093;}
+.white{color:#fff;}
+/*×ÖÌå´óÐ¡*/
+.font_12{font-size:12px;}
+.font_14{font-size:14px;}
+.font_16{font-size:16px;}
+/*ÎÄ×ÖÐÞÊÎ*/
+.font_bold{font-weight: bold;}
+.font_lineThrough{ text-decoration:line-through;}
+.font_underline{ text-decoration:underline;}
+.lineH_20{line-height:20px;}
+.lineH_24{line-height:24px;}
+/*Á´½ÓÑùÊ½1-----------Ä¬ÈÏºÚÉ«£¬ÐüÍ£ºìÉ«£¬°´ÏÂ»ÒÉ«---------*/
+.a_default{color:#000;}
+.a_default:hover{color:#f00;}
+.a_default:active{color:#ccc;}
+/*Á´½ÓÑùÊ½2-----------Ä¬ÈÏºìÉ«£¬ÐüÍ£»ÒÉ«---------*/
+.a_red{color:#f00;}
+.a_red:hover{color:#ccc;}
+/*Á´½ÓÑùÊ½3-----------Ä¬ÈÏÀ¶É«£¬ÐüÍ£ºìÉ«---------*/
+.a_blue{color:#1292cd;}
+.a_blue:hover{color:#f00;}

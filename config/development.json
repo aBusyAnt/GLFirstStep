@@ -1,0 +1,63 @@
+{
+  "reinitDB":false,
+  "debug":true,
+  "database": {
+    "type":"postgres",
+    "host":"",
+    "database":" ",
+    "user":"",
+    "password":" ",
+    "ssl":false
+  },
+  "file_upload_path": {
+    "imgs":"/imgs/",
+    "book_cover":"/book_cover/",
+    "course_cover":"/course_cover/"
+  },
+  "session_secret":"study1234_secret",
+	"wx": {
+    "app_id": " ",
+    "app_secret": " ",
+    "token": "weiweichatToken",
+    "encodingAESKey": "xB5pwFDzlizDZXJpomedlgpOIUElrozwKZyXbsFFvWR",
+    "wx_menu": {
+      "button": [
+        {
+          "name": "菜单",
+          "sub_button": [
+            {
+              "type": "view",
+              "name": "资讯菜单",
+              "url": "http://ip:port/all"
+            }
+          ]
+        },
+        {
+          "name": "菜单2",
+          "sub_button": [
+            {
+              "type": "view",
+              "name": "我的11",
+              "url": "http://ip:port/all"
+            }
+          ]
+        },
+        {
+          "name": "助理",
+          "sub_button": [
+            {
+              "type": "view",
+              "name": "大学",
+              "url": "http://ip:port/all"
+            },
+            {
+              "type": "view",
+              "name": "社区",
+              "url": "http://ip:port/all"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

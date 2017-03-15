@@ -1,0 +1,147 @@
+<% include header.ejs %>
+<div class="middle-category">
+	<div class="container">
+		<ul class="middle-category-nav" id = "book-categories">
+		</ul>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 book-list">
+			<div id="booklistLoadingLabel">
+				<p id="load" class="loadtext">正在为您加载,请稍后......</p>
+			</div>
+			<table class="table" id="book-table">
+			</table>
+			<div class="text-center" id="books-pagination-div">			 
+				<ul id="books-pagination" class="pagination-sm"></ul>
+			</div>
+		</div>
+		<div class="col-md-4" id="hotdownloadBlock">
+		</div>
+	</div>
+</div>
+<script>
+//Request Data with Ajax 
+function ajaxBookPage(curPage) {
+	var url = '/book/get/';
+	url += <%= locals.queryCategory %>
+	url += '/'
+	url += curPage;
+
+	$.ajax({
+		type:'get',
+		async:true,
+		cache:true,
+		dataType:"json",
+		url:url,
+		success:function (result){
+			console.log(result);
+			if (result.books.length > 0) {
+				$("#booklistLoadingLabel").remove();
+			}
+			$("#book-list-body").remove();				
+			$("#book-table").append("<tbody id=\"book-list-body\"></tbody>");
+
+			if (result.category) {
+				var caption = "<caption>" + "==> " ;
+				caption += result.category.name;
+				caption += "</caption>";
+				$("#book-list-body").append(caption);
+			}
+
+
+			for(var i=0;i<result.books.length;i++){
+				var aBook = result.books[i];
+				
+				var trDom = "<tr>";
+				trDom += "<td>";
+				trDom += "<a onclick=\"javascript:bookDetailPage("
+				trDom += aBook.id;
+				trDom += "); return false;\" href=\"#\">"
+				trDom += "<img src=\"/" + aBook.cover_url +  "\" class=\"img-thumbnail admin-thumbnail\"></td>";
+				trDom += "</a>";
+				trDom += "<td>";
+				trDom += "<div class= \"book-item-info\">";
+				trDom += "<a onclick=\"javascript:bookDetailPage("
+				trDom += aBook.id;
+				trDom += "); return false;\" href=\"#\">"
+				trDom += "<h4>" + aBook.name + "</h4>";
+				trDom += "</a>";
+				trDom += "<p>" + aBook.publishing_house + "</p>"
+				trDom += "<p>" + new Date(aBook.publishing_date).Format("yyyy-MM-dd") +  "</p>"
+
+				if (aBook.summary &&aBook.summary.length > 70){
+					aBook.summary = aBook.summary.substring(0,67);
+					aBook.summary += '...';
+				}
+
+
+				trDom += "<p class=\"booksummary\">" + aBook.summary + "</p>"
+				trDom += "</div>"
+				trDom += "</td>"
+
+				trDom += "<td class=\"book-download-td\">";
+				trDom += "<ul>";
+				trDom += "<li>";
+				trDom += "<a onclick=\"javascript:bookDetailPage("
+				trDom += aBook.id;
+				trDom += "); return false;\" href=\"#\">"
+				trDom += "<button type=\"button\" class=\"btn btn-success btn-block\">下载</button>";
+				trDom += "</a>";
+				trDom += "</li>";
+				trDom += "<li>";
+				trDom += "<a onclick=\"javascript:bookDetailPage("
+				trDom += aBook.id;
+				trDom += "); return false;\" href=\"#\">"
+				trDom += "<button type=\"button\" class=\"btn btn-info btn-block\">预览</button>";
+				trDom += "</a>";
+				trDom += "</li>";
+				trDom += "</ul>";
+				trDom += "</td>";
+				trDom += "</tr>";
+
+				$("#book-list-body").append(trDom);
+			}
+		}
+	})
+}
+function ajaxCategories(){
+	$.ajax({
+		type:'get',
+		async:true,
+		cache:true,
+		dataType:"json",
+		url:'/book/categories',
+		success:function (categories){
+			console.log(categories);
+			for (var i=0 ; i<categories.length;i++) {
+				var aCategory = categories[i];
+				var categoryLi = "<li><a class=\"normal\" href=\"/book/list/" + aCategory.id + "\"> " + "<div class=\"article-tag\">" + aCategory.name + "</div></a></li>";
+				console.log(categoryLi);
+				$("#book-categories").append(categoryLi);
+			}
+		}
+	})
+}
+
+//Paginator
+<% if (locals.totalPages > 0) {%>
+$('#books-pagination').twbsPagination({
+    totalPages: <%- locals.totalPages %>,
+    visiblePages: 5,
+    onPageClick: function (event, page) {
+    	ajaxBookPage(page);
+    }
+});
+<% } else { %>
+	$("#load").remove();
+	$("#booklistLoadingLabel").append("<p class=\"center-block\" id=\"all-courses-loading\">暂未找到合适的书籍,我们正在收集一大批干货书籍,请关注我们的更新...</p>");
+			
+<% } %>
+ajaxCategories();
+ajaxHotdownloads();
+
+
+</script>
+<% include footer.ejs %>

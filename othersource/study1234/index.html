@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Study1234</title>
+<link rel="stylesheet" type="text/css" href="css/common.css" />
+<link rel="stylesheet" type="text/css" href="css/base.css" />
+<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+<script>
+$(document).ready(function() {
+  $(".mainProNav dl dt").mouseover(function() {
+	  $(".mainProNav dl").removeClass("dlHover");
+	  $(this).parent().addClass("dlHover");
+  })
+  $(".mainProNav").hover(function() {
+	  $(this).addClass("mainProNavHover");
+  },function() {
+	  $(this).removeClass("mainProNavHover");
+	  $(".mainProNav dl").removeClass("dlHover");
+  })
+});
+</script>
+</head>
+<body>
+<div class="wrapper">
+	<div class="header">
+    	<div class="header_top">
+        	<a href="study1234" class="header_logo">Study1234</a>
+            <div class="search_box">
+            	<form method="post" name="search_form" id="header_search_form">
+            		<input type="text" class="search_input" placeholder="搜索课程" maxlength="40" >
+                	<a href="javascript:document.getElementById('search_input').submit()" class="search_submit">
+                    	<span><img src="imgs/search.gif" class="search_submit_icon"/></span>
+                    </a>
+                </form>
+            </div>
+            <div class="login_box">
+                <a href="#" id="login">登录</a>
+                <a href="#">注册</a>
+            </div>
+       </div>
+       <div class="header_bottom">
+            <ul>
+            	<li><a href="#">首页</a></li>
+                <li><a href="#">专题</a></li>
+                <li><a href="#">学习计划</a></li>
+                <li><a href="#">资源下载</a></li>
+            </ul>
+       </div>
+	</div>
+  <div id="pager">
+    <div class="page_top">
+      <div class="side_small tag_line float_l">
+		    <div class="mainProNav">
+    			<dl class="navM1">
+            <dt>移动开发</dt>
+    				<dd>
+              <h6>应用开发</h6>
+              <ul>
+                <li><a href="http://www.16sucai.com/?2226.html">iOS</a></li>
+                <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">Android</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">Swift</a></li>
+              </ul>
+              <h6>游戏开发</h6>
+             <ul>
+                <li><a href="http://www.16sucai.com/?2226.html">Unity3D</a></li>
+                <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">Cocos</a></li>
+              </ul>
+              <h6>常用框架</h6>
+              <ul>
+                <li><a href="http://www.16sucai.com/?2226.html">React Native</a></li>
+              </ul>
+    				</dd>
+    			</dl>
+    			<dl class="navM1">
+            <dt>前端开发</dt>
+            <dd>
+              <h6>前端基础</h6>
+              <ul>
+                <li><a href="http://www.16sucai.com/?2226.html">HTML+CSS</a></li>
+                <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">JavaScript</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">HTML5</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">CSS3</a></li>
+              </ul>
+              <h6>前端框架</h6>
+             <ul>
+                <li><a href="http://www.16sucai.com/?2226.html">JQuery</a></li>
+                <li><a href="http://www.16sucai.com/?2226.html">AngularJS</a></li>
+                <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">JQuery UI</a></li>
+                <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">Bootstrap</a></li>
+              </ul>
+            </dd>
+          </dl>
+          <dl class="navM1">
+            <dt>后端开发</dt>
+            <dd>
+              <h6>PHP</h6>
+              <ul>
+                <li><a href="http://www.16sucai.com/?2226.html">PHP基础</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">Laravel</a></li>
+                <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">YII</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">ThinkPHP</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">WordPress</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">项目实战</a></li>
+              </ul>
+              <h6>J2EE</h6>
+              <ul>
+                <li><a href="http://www.16sucai.com/?2226.html">JSP</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">Maven</a></li>
+                <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">Spring</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">SpringMVC</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">Struts2</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">MyBatis</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">Hibernate</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">其它常用框架</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">项目实战</a></li>
+              </ul>
+              <h6>Node.js</h6>
+              <ul>
+                <li><a href="http://www.16sucai.com/?2226.html">Node.js基础</a></li>
+                <li><a href="http://www.16sucai.com/?2226.html">Express</a></li>
+                <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">常用模块与设计模式</a></li>
+                <li><a href="http://www.16sucai.com/?2206.html">项目实战</a></li>
+              </ul>
+              <h6>Python</h6>
+              <ul>
+                <li><a href="http://www.16sucai.com/?2226.html">Python基础</a></li>
+                <li><a href="http://www.16sucai.com/?2226.html">Django</a></li>
+                <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">数据挖掘分析</a></li>
+              </ul>
+            </dl>
+            <dl class="navM1">
+              <dt>数据库</dt>
+              <dd>
+                <h6>SQL</h6>
+                <ul>
+                  <li><a href="http://www.16sucai.com/?2226.html">MySQL</a></li>
+                  <li><a href="http://www.16sucai.com/?2206.html">PostgreSQL</a></li>
+                  <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">Sqlite</a></li>
+                  <li><a href="http://www.16sucai.com/?2206.html">SQL Server</a></li>
+                </ul>
+                <h6>NoSQL</h6>
+                <ul>
+                  <li><a href="http://www.16sucai.com/?2226.html">MongoDB</a></li>
+                  <li><a href="http://www.16sucai.com/?2206.html">Redis</a></li>
+                </ul>
+              </dd>
+          </dl>
+            <dl class="navM1">
+              <dt>基础知识</dt>
+              <dd>
+                <h6>语言基础</h6>
+                <ul>
+                  <li><a href="http://www.16sucai.com/?2226.html">C/C++</a></li>
+                  <li><a href="http://www.16sucai.com/?2226.html">Java</a></li>
+                  <li><a href="http://www.16sucai.com/?2206.html"></a>Objective-C</li>
+                  <li><a href="http://www.ofcard.comhttp://www.16sucai.com/?2216.html">Swift</a></li>
+                  <li><a href="http://www.16sucai.com/?2206.html">Python</a></li>
+                  <li><a href="http://www.16sucai.com/?2206.html">QT</a></li>
+                  <li><a href="http://www.16sucai.com/?2206.html">C#</a></li>
+                </ul>
+                <h6>NoSQL</h6>
+                <ul>
+                  <li><a href="http://www.16sucai.com/?2226.html">MongoDB</a></li>
+                  <li><a href="http://www.16sucai.com/?2206.html">Redis</a></li>
+                </ul>
+              </dd>
+          </dl>
+		    </div><!-- mainProNav end -->
+      </div>
+    </div><!-- page_top -->
+  </div><!-- page-->
+</div><!-- wrapper -->
+</body>
+</html>

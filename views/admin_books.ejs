@@ -1,0 +1,51 @@
+<% include admin_header.ejs %>
+<div class="admin-right-container">
+	<div class="btn-toolbar">
+		<a href="/admin/book/new">
+			<button class="btn btn-primary">添加新书</button>
+		</a>
+	</div>
+	<div class="admin-list">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>书名</th>
+					<th>出版社</th>
+					<th>分类</th>
+					<th>添加时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if( books && books.length > 0){ %>
+						<% books.forEach(function(book) { %>
+							<tr>
+								<td><%= book.id %></td>
+								<td><%= book.name %></td>
+								<td><%= book.publishing_house %></td>
+								<td><% if (book.study_book_category) {%><%= book.study_book_category.name %><%}%></td>
+								<td><%= moment(book.createdAt).format("YYYY-MM-DD HH:mm:ss") %></td>
+								<td>
+								<a href="/admin/book/new/<%= book.id %>" ><i class="glyphicon glyphicon-edit"></i></a>&nbsp&nbsp
+								<a href="/admin/book/remove/<%= book.id %>" onclick="return confirm('确认删除');"><i class="glyphicon glyphicon-remove"></i></a>
+								</td>
+							</tr>
+						<% }) %>
+				<% } %>
+			</tbody>
+		</table>
+		<% if(page) {%>
+			<ul id="books-pagination" class="pagination-sm"></ul>
+		<% } %>
+	</div>
+</div>
+<script>
+	$('#books-pagination').twbsPagination({
+        totalPages: <%= locals.page.totalPages %>,
+        visiblePages: 5,
+        href : '/admin/books/{{page}}'
+    });
+
+</script>
+<% include admin_footer.ejs %>

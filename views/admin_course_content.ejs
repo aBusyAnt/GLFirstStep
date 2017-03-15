@@ -1,0 +1,53 @@
+<% include admin_header.ejs %>
+<div class="admin-right-container">
+	<div class="btn-toolbar">
+		<a href="/admin/course/section/<%- courseId %>/edit">
+			<button class="btn btn-primary">Add New Section</button>
+		</a>
+	</div>
+	<div class="admin-list">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>名称</th>
+					<th>时长</th>
+					<th>地址</th>
+					<th>添加时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>				
+				<% if( courseSections && courseSections.length > 0){ %>
+					<% courseSections.forEach(function(section) { %>
+						<tr>
+							<td colspan="5" class="adminsection"><%= section.title %></td>
+							<td class="adminsection">
+								<a href="/admin/course/section/<%- courseId %>/edit/<%= section.id %>"><i class="glyphicon glyphicon-edit"></i></a>&nbsp&nbsp
+								<a href="/admin/course/section/<%- courseId %>/remove/<%= section.id %>" onclick="return confirm('确认删除');"><i class="glyphicon glyphicon-remove"></i></a>
+								&nbsp&nbsp
+								<a href="/admin/course/content/<%- courseId %>/<%- section.id %>/edit"><i class="glyphicon glyphicon-plus"></i></a>
+							</td>
+						</tr>
+						<% if( section.content && section.content.length > 0){ %>
+							<% section.content.forEach(function(courseContent) { %>
+								<tr>
+									<td><%= courseContent.id %></td>
+									<td><%= courseContent.title %></td>
+									<td><%= courseContent.duration %></td>
+									<td><%= courseContent.video_url %></td>
+									<td><%= moment(courseContent.createdAt).format("YYYY-MM-DD HH:mm:ss") %></td>
+									<td>
+									<a href="/admin/course/content/<%- courseId %>/<%- section.id %>/edit/<%= courseContent.id %>"><i class="glyphicon glyphicon-edit"></i></a>&nbsp&nbsp
+									<a href="/admin/course/content/<%- courseId %>/<%- section.id %>/remove/<%= courseContent.id %> " onclick="return confirm('确认删除');"><i class="glyphicon glyphicon-remove"></i></a>
+									</td>
+								</tr>
+							<% }) %>
+						<% } %>
+					<% }) %>
+				<% } %>	
+			</tbody>
+		</table>
+	</div>
+</div>
+<% include admin_footer.ejs %>

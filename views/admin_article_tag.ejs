@@ -1,0 +1,38 @@
+<% include admin_header.ejs %>
+<div class="admin-right-container">
+	<div class="btn-toolbar">
+		<a href="/admin/article_tag/edit">
+			<button class="btn btn-primary">添加标签</button>
+		</a>
+	</div>
+	<div class="admin-list">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>名称</th>
+<!-- 					<th>文章数量</th>
+ -->					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if( tags && tags.length > 0){ %>
+					<% tags.forEach(function(tag) { %>
+						<tr>
+							<td><%= tag.id %></td>
+							<td><%= tag.name %></td>
+<!-- 							<td><%= tag.article_number > 0 ? tag.article_number : 0 %></td>
+ -->							<td>
+								<a href="/admin/article_tag/edit/<%= tag.id %>"><i class="glyphicon glyphicon-edit"></i></a>&nbsp&nbsp
+								<a href="/admin/article_tag/remove/<%= tag.id %>" onclick="return confirm('确认删除');"><i class="glyphicon glyphicon-remove"></i></a>
+							</td>
+						</tr>
+					<% }) %>
+				<% } %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script src="/javascripts/admin_crud.js"></script>
+
+<% include admin_footer.ejs %>

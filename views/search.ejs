@@ -1,0 +1,120 @@
+<% include header.ejs %>
+<ul id="searchTab" class="nav nav-tabs">
+   <li class="active"><a href="#course" data-toggle="tab"><span id="tab-course">课程</span></a></li>
+   <li><a href="#courseContent" data-toggle="tab"><span id="tab-courseContent">课程内容</span></a></li>
+   <li><a href="#article" data-toggle="tab"><span id="tab-article">文章</span></a></li>   
+   <li><a href="#book" data-toggle="tab"><span id="tab-book">书籍</span></a></li>
+</ul>
+<div id="searchTabContent" class="tab-content">
+   <div class="tab-pane fade in active" id="course">
+   </div>
+   <div class="tab-pane fade" id="courseContent">
+   </div>
+   <div class="tab-pane fade" id="article">
+   </div>
+   <div class="tab-pane fade" id="book">
+   </div>
+</div>
+
+</body>
+</html>
+<script type="text/javascript">
+function ajaxSearchCourse(){
+	var url = "/course/search/course/" + "<%- locals.keyword %>";
+	$.ajax({
+		type:'get',
+		async:true,
+		cache:true,
+		dataType:"json",
+		url:url,
+		success:function (results){
+			console.log(results);
+			var tabTitle = "课程" + "<span class=\"red-label\">(" + results.length + ")</span>";
+			$("#tab-course").html(tabTitle);
+			$("#course").append("<p class=\"search-note\">根据课程名称、描述 搜索到" + "<span class=\"red-label\">" + results.length + "</span>" + "个课程:</p>");
+			$("#course").append("<table class=\"table table-hover\" id=\"course-table\">");
+			for(var i=0 ;i <results.length;i++) {
+				var course = results[i];
+				var liDom = "<tr><td><a href=\"/course/detail/" + course.id + "\"><h4 class=\"pull-left\">" + course.title + "</h4> <span class=\"pull-right course-duration\">" + course.createdAt  + "</span></a></td></tr>"
+				$("#course-table").append(liDom);
+			}
+			$("#course").append("</table>");
+		}
+	});
+}
+function ajaxSearchCourseContent(){
+	var url = "/course/search/course/content/" + "<%- locals.keyword %>";
+	$.ajax({
+		type:'get',
+		async:true,
+		cache:true,
+		dataType:"json",
+		url:url,
+		success:function (results){
+			console.log(results);
+			var tabTitle = "课程内容" + "<span class=\"red-label\">(" + results.length + ")</span>";
+			$("#tab-courseContent").html(tabTitle);
+			$("#courseContent").append("<p class=\"search-note\">根据课程名称、描述 搜索到" + "<span class=\"red-label\">" + results.length + "</span>" + "个课程内容:</p>");
+			$("#courseContent").append("<table class=\"table table-hover\" id=\"courseContent-table\">");
+			for(var i=0 ;i <results.length;i++) {
+				var content = results[i];
+				var liDom = "<tr><td><a href=\"/course/detail/" + content.course_id + "\"><h4 class=\"pull-left\">" + content.title + "</h4> <span class=\"pull-right course-duration\">" + content.createdAt  + "</span></a></td></tr>"
+				$("#courseContent-table").append(liDom);
+			}
+			$("#courseContent").append("</table>");
+		}
+	});
+}
+function ajaxSearchArticle(){
+	var url = "/article/search/" + "<%- locals.keyword %>";
+	$.ajax({
+		type:'get',
+		async:true,
+		cache:true,
+		dataType:"json",
+		url:url,
+		success:function (results){
+			console.log(results);
+			var tabTitle = "文章" + "<span class=\"red-label\">(" + results.length + ")</span>";
+			$("#tab-article").html(tabTitle);
+			$("#article").append("<p class=\"search-note\">根据文章标题与内容搜索到" + "<span class=\"red-label\">" + results.length + "</span>" + "个课程内容:</p>");
+			$("#article").append("<table class=\"table table-hover\" id=\"article-table\">");
+			for(var i=0 ;i <results.length;i++) {
+				var article = results[i];
+				var liDom = "<tr><td><a href=\"/article/detail/" + article.id + "\"><h4 class=\"pull-left\">" + article.title + "</h4> <span class=\"pull-right course-duration\">" + article.createdAt  + "</span></a></td></tr>"
+				$("#article-table").append(liDom);
+			}
+			$("#article").append("</table>");
+		}
+	});
+}
+
+function ajaxSearchBook(keyword){
+	var url = "/book/search/" + "<%- locals.keyword %>";
+	$.ajax({
+		type:'get',
+		async:true,
+		cache:true,
+		dataType:"json",
+		url:url,
+		success:function (results){
+			console.log(results);
+			var tabTitle = "书籍" + "<span class=\"red-label\">(" + results.length + ")</span>";
+			$("#tab-book").html(tabTitle);
+			$("#book").append("<p class=\"search-note\">根据书籍标题、描述与目录搜索到" + "<span class=\"red-label\">" + results.length + "</span>" + "个课程内容:</p>");
+			$("#book").append("<table class=\"table table-hover\" id=\"book-table\">");
+			for(var i=0 ;i <results.length;i++) {
+				var book = results[i];
+				var liDom = "<tr><td><a href=\"/book/detail/" + book.id + "\"><h4 class=\"pull-left\">" + book.name + "</h4> <span class=\"pull-right course-duration\">" + book.createdAt  + "</span></a></td></tr>"
+				$("#book-table").append(liDom);
+			}
+			$("#book").append("</table>");
+		}
+	});
+}
+ajaxSearchCourse();
+ajaxSearchCourseContent();
+ajaxSearchArticle();
+ajaxSearchBook();
+</script>
+<% include footer.ejs %>

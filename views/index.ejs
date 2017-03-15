@@ -1,0 +1,81 @@
+<% include header.ejs %>
+<div class="subhead">
+	<div id="myCarousel" class="carousel slide">
+	   <ol class="carousel-indicators">
+	      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+	      <li data-target="#myCarousel" data-slide-to="1"></li>
+	   </ol>
+	   <div class="carousel-inner">
+	      <div class="item">
+	         <a><img src="http://7d9qed.com1.z0.glb.clouddn.com//study1234/index/banner/index_banner_001.png" alt="Second slide"></a>
+	      </div>
+	      <div class="item active">
+	        <a><img src="http://7d9qed.com1.z0.glb.clouddn.com//study1234/index/banner/index_banner_002.png" alt="Third slide"></a>
+	      </div>
+	   </div>
+	   <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+	   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+	</div>
+</div>
+<div class="middle-category">
+	<ul class="middle-category-nav">
+		<li><a class="normal" href="/course">视频课程</a></li>
+		<li><a class= "normal highlight" href="/article">技术文章</a></li>
+		<li><a class="normal highlight" href="/book">大牛书籍</a></li>
+		<li><a class="normal highlight" href="/article/list/4/1">Swift</a></li>
+		<li><a class="normal highlight" href="/article/list/5/1">iOS</a></li>
+	</ul>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">推荐课程</h3>
+		<div class="all_course">
+			<a href="/course">全部课程</a>
+		</div>
+	</div>
+   <div class="panel-body">
+      <div class="recommend-courses" id = "recommend-courses">
+		  <p class="center-block" id="recommend-courses-loading">正在努力为您加载,请稍后...</p>
+      </div>
+   </div>
+</div>
+<div class="row">
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">最新文章</h3>
+				<div class="all_course">
+					<a href="/article">全部文章</a>
+				</div>
+			</div>
+		   <div class="panel-body">
+		      <div class="recommend-courses" id = "latest-articles">
+				  <p class="center-block" id="latest-articles-loading">正在努力为您加载,请稍后...</p>
+		      </div>
+			  <button class="btn btn-default center-block loading-more-articles"><a href="/article">查看更多文章</a></button>
+		   </div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">最新书籍</h3>
+				<div class="all_course">
+					<a href="/book">全部书籍</a>
+				</div>
+			</div>
+		   <div class="panel-body">
+		      <div class="recommend-courses" id = "latest-books">
+				  <p class="center-block" id="latest-books-loading">正在努力为您加载,请稍后...</p>
+		      </div>
+		   </div>
+		</div>
+	</div>
+</div>
+<script>
+
+ajaxRecommendCourses();
+ajaxArticles();
+ajaxBooks();
+</script>
+<% include footer.ejs %>

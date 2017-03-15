@@ -1,0 +1,62 @@
+<% include admin_header.ejs %>
+<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
+<div class="admin-right-container">
+	<h2><%= title %></h2><hr>
+	<form class="admin-form" role="form" method="post">
+		<% if (error) { %>
+			<div class="alert alert-danger alert-dismissable">
+			   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      	<%= error %>
+		    </div>
+	    <% } %>
+		<fieldset>
+			<div class="form-group">
+				<label for="name">标题</label>
+				<input type="text" class="form-control" id="title" name="title" <% if (article && article.title) { %>value=<%= article.title %><%}%> required>
+			</div>			
+			<div class="form-group">
+				<label class="control-label">文章内容</label><br>
+				<textarea name="markdown" data-provide="markdown" type="textarea" id = "content_makedown" ><% if(article && article.markdown) {%><%= article.markdown %>
+				<% } %></textarea>
+			</div>
+			<div class="form-group">
+				<label for="name">标签</label>
+				<% if( tags && tags.length > 0){ %>
+					<% tags.forEach(function(tag) { %>
+						<label class="checkbox-inline">
+						<input type="checkbox", value="<%= tag.id %>" name="tags"><%= tag.name %>
+						</label>
+					<% }) %>
+				<% } %>
+			</div>
+			<button type="submit" class="btn btn-primary">保存</button>
+		</fieldset>
+	</form>
+</div>
+<script type="text/javascript" src="/javascripts/bootstrap-markdown.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+	$('#content_makedown').markdown({height:600});
+
+	//init current selected tags
+	
+	var jsonObjs = <%- locals.f_articletags %>;
+	var selectedTags = new Array();
+	$.each(jsonObjs,function(idx,item){
+		selectedTags.push(item.article_tag_id);
+		console.log(item.article_tag_id);
+	});
+	console.log(selectedTags);
+	if (jsonObjs.length > 0) {
+		$("input[name='tags']").each(function(){
+			var domVal = $(this).val();
+			if (selectedTags.containsValue(domVal)){
+				$(this).attr('checked',true);
+			} else {
+				console.log('nononono');
+				$(this).attr('checked',false);
+			}
+		});	
+	}
+
+</script>
+<% include admin_footer.ejs %>

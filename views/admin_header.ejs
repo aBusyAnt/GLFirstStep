@@ -1,0 +1,44 @@
+<html>
+<% include commonheader.ejs %>
+<body>
+<div class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <a class="navbar-brand" href="/admin" id="admin_logo">配置管理系统</a>
+      </div>
+  </div>
+</div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-md-2">
+          <div class="well sidebar-nav">
+<!--             <ul class="nav nav-list">
+                <li class="nav-header">系统管理</li>
+                <li><a href="#"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-th-list"></i>菜单管理</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>角色管理</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
+            </ul> -->
+            <ul class="nav nav-list">
+              <li class="nav-header">书籍管理</li>
+              <li><a href="/admin/book_categories">书籍分类</a></li>
+              <li><a href="/admin/books/1">书籍管理</a></li>
+            </ul> 
+            <ul class="nav nav-list">
+              <li class="nav-header">文章管理</li>
+              <li><a href="/admin/article_tags">标签管理</a></li>
+              <li><a href="/admin/articles">文章管理</a></li>              
+            </ul>
+            <ul class="nav nav-list">
+              <li class="nav-header">课程管理</li>
+              <li><a href="/admin/course/categories">课程分类</a></li>
+              <li><a href="/admin/courses">课程管理</a></li>
+            </ul>
+<!--             <ul class="nav nav-list">
+              <li class="nav-header">用户管理</li>
+              <li><a href="user">用户管理</a></li>
+            </ul> -->
+          </div>
+        </div>
+        <div class="col-md-10">

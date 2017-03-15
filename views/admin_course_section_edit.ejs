@@ -1,0 +1,29 @@
+<% include admin_header.ejs %>
+<div class="admin-right-container">
+	<h2><%= title %></h2><hr>
+	<form class="admin-form" role="form" method="post">
+		<% if (error) { %>
+			<div class="alert alert-danger alert-dismissable">
+			   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      	<%= error %>
+		    </div>
+	    <% } %>
+		<fieldset>
+			<div class="form-group">
+				<label for="name">标题</label>
+				<input type="text" class="form-control" id="title" name="title" placeholder="请输入章节名称" <% if (section && section.title) { %>value="<%= section.title %>"<%}%> required rows="3">
+			</div>
+			<div class="form-group">
+				<label class="control-label">描述</label>
+				<textarea class="form-control" type="textarea" name="description" required rows="3"><% if(section && section.description) {%><%= section.description %>
+				<% } %></textarea>
+			</div>
+			<div class="form-group">
+				<label for="name">排序值</label>
+				<input type="text" class="form-control" id="sequence" name="sequence" placeholder="请输入排序值,值越小,排序越靠前" <% if (section && section.sequence) { %>value="<%= section.sequence %>"<%}%> required rows="3">
+			</div>
+			<button type="submit" class="btn btn-primary">保存</button>
+		</fieldset>
+	</form>
+</div>
+<% include admin_footer.ejs %>

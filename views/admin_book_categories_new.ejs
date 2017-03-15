@@ -1,0 +1,30 @@
+<% include admin_header.ejs %>
+<div class="admin-right-container">
+	<h2><%= title %></h2><hr>
+	<form class="admin-form" role="form" method="post">
+		<% if (error) { %>
+			<div class="alert alert-danger alert-dismissable">
+			   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      	<%= error %>
+		    </div>
+	    <% } %>
+		<fieldset>
+			<div class="form-group">
+				<div class="row">
+					<div class="col-md-2">
+						<label for="name">分类名称</label>
+					</div>
+					<div class="col-md-2">
+						<input type="text" class="form-control" id="name" name="name" placeholder="请输入分类名称" required <% if (category && category.name) { %>value="<%= category.name %>"<%}%>>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-2">
+					<button type="submit" class="btn btn-primary btn-block">保存</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>
+<% include admin_footer.ejs %>

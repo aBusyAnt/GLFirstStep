@@ -1,0 +1,18 @@
+{
+  "reinitDB":false,
+  "debug":true,
+  "database": {
+    "type":"postgres",
+    "host":"localhost",
+    "database":" ",
+    "user":" ",
+    "password":" ",
+    "ssl":false
+  },
+  "file_upload_path": {
+    "imgs":"/imgs/",
+    "book_cover":"/book_cover/",
+    "course_cover":"/course_cover/"
+  },
+  "session_secret":"study1234_secret"
+}

@@ -1,0 +1,117 @@
+<% include header.ejs %>
+<div class="middle-category">
+	<div class="container">
+		<ul class="middle-category-nav" id = "course-categories">
+		</ul>
+	</div>
+</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">全部课程</h3>
+	</div>
+   <div class="panel-body">
+      <div class="recommend-courses" id = "all-courses">
+      	<p class="center-block" id="all-courses-loading">正在努力为您加载,请稍后...</p>
+      </div>
+	  <div class="text-center" id="courses-pagination-div">
+      <ul id="courses-pagination" class="pagination-sm"></ul>			 
+	  </div>
+   </div>
+</div>
+<script type="text/javascript">
+function ajaxAllCourses(curPage){
+  var url = '/course/all/'
+  url += <%= locals.category %>;
+  url += '/';
+  if(curPage) {
+ 	  url += curPage;
+  }
+  $.ajax({
+    type:'get',
+    async:true,
+    cache:true,
+    dataType:"json",
+    url:url,
+    success:function (result){
+      var courses = result.courses;
+      console.log(courses);
+      $("#all-courses-loading").remove();
+      $("#courseContent").remove();
+      if (courses.length == 0) {
+        $("#all-courses").append("<p class=\"center-block\" id=\"all-courses-loading\">暂未找到合适的课程,我们正在计划一大波干货视频,请关注我们的更新...</p>");
+      } 
+      var coursesDom = "<div class=\"row\" id=\"courseContent\">";
+      for (var i=0;i<courses.length;i++) {
+        var aCourse = courses[i];
+        coursesDom += "<div class=\"col-sm-6 col-md-4 col-lg-3\">";
+        coursesDom += "<div class=\"course-item\">";
+        coursesDom += "<a href=\"/course/detail/";
+        coursesDom += aCourse.id;
+        coursesDom += "\" class=\"thumbnail\">";
+
+        coursesDom += "<img src=\"/";
+        coursesDom += aCourse.cover_url;
+        coursesDom += "\" class=\"course-cover-thumbnail\">";
+
+        coursesDom += "<h5>";
+        coursesDom += aCourse.title;
+        coursesDom += "</h5>";
+
+        coursesDom += "<div class=\"tips\">"
+        coursesDom += "<p>";
+        coursesDom += aCourse.tip;
+        coursesDom += "</p>";
+
+        coursesDom += "<span class=\"l\">";
+        coursesDom += aCourse.update_status;
+        coursesDom += "</span>";
+
+        coursesDom += "<span class=\"l ml20\">";
+        coursesDom += aCourse.studynum;
+        coursesDom += "</span>";
+
+        coursesDom += "</div>";
+        coursesDom += "</a>";
+        coursesDom += "</div>";
+        coursesDom += "</div>";
+
+      }
+      coursesDom += "</div>";
+      $("#all-courses").append(coursesDom);
+    }
+  })
+}
+
+function ajaxCourseCategories(){
+	$.ajax({
+		type:'get',
+		async:true,
+		cache:true,
+		dataType:"json",
+		url:'/course/categories',
+		success:function (categories){
+			console.log(categories);
+			for (var i=0;i < categories.length;i++) {
+				var aCategory = categories[i];
+				var categoryLi = "<li><a class=\"normal\" href=\"/course/" + aCategory.id + "\"> "  + "<div class=\"article-tag\">" + aCategory.name + "</div></a></li>";
+				console.log(categoryLi);
+				$("#course-categories").append(categoryLi);
+			}
+		}
+	})
+}
+<% if (locals.totalPages > 0) {%>
+$('#courses-pagination').twbsPagination({
+  totalPages: <%- locals.totalPages %>,//result.page.totalPages,
+  visiblePages: 5,
+  onPageClick: function (event, page) {
+    ajaxAllCourses(page);
+  }
+});
+<% } else { %>
+  $("#all-courses-loading").remove();
+  $("#all-courses").append("<p class=\"center-block\" id=\"all-courses-loading\">暂未找到合适的课程,我们正在计划一大波干货视频,请关注我们的更新...</p>");
+<% } %>
+ajaxCourseCategories();
+</script>
+<% include footer.ejs %>

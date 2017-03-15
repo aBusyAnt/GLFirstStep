@@ -1,0 +1,56 @@
+.admin-list{
+    margin-top: 20px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.admin-list th {
+    color: #ffffff;
+	font:normal 16px/2em "宋体",Arial,Times;
+    background-color: #01814A;
+}
+.admin-list td,th {
+    text-align: center; 
+}
+.admin-right-container{
+	margin: 20px 20px 100px 20px;
+	padding: 30px;
+	border: #e3e3e3 dashed 2px;
+}
+.admin-thumbnail{
+	max-width: 200px;
+	max-height: 200px;
+}
+.admin-form {
+
+}
+.login-form{
+	max-width: 400px;
+	margin: 10px auto 20px auto;
+	padding: 30px;
+	border: #e3e3e3 dashed 2px;
+}
+.admin-login-form-title {
+	max-width: 400px;
+	color: #e3e3e3;
+	text-align: center;
+	margin: 100px auto 0 auto;
+}
+
+/*.pagination {
+	max-height: 40px;
+	margin-bottom: 20px;
+	background-color: #fafafa;
+	border: #e3e3e3 solid 1px;
+	padding: 10px;
+	float: right;
+}
+.pagination li{
+	float: left;
+	margin: 0 10px;
+}*/
+
+.adminsection {
+	background-color: #F0F0F0;
+	text-align: left;
+
+}

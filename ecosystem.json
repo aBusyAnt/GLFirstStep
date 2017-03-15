@@ -1,0 +1,52 @@
+{
+  /**
+   * Application configuration section
+   * http://pm2.keymetrics.io/docs/usage/application-declaration/
+   */
+  apps : [
+
+    // First application
+    {
+      name      : "Study1234",
+      script    : "app.js",
+      env: {
+        COMMON_VARIABLE: "true"
+      },
+      env_production : {
+        NODE_ENV: "production"
+      }
+    },
+
+    // Second application
+    // {
+    //   name      : "WEB",
+    //   script    : "web.js"
+    // }
+  ],
+
+  /**
+   * Deployment section
+   * http://pm2.keymetrics.io/docs/usage/deployment/
+   */
+  deploy : {
+    production : {
+      user : "git",
+      host : ["study1234.com","115.29.138.87"],
+      ref  : "origin/master",
+      repo : "git@localhost:study1234.git",
+      path : "/home/git/node_publish/production",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
+    },
+    dev : {
+      user : "git",
+      host : ["study1234.com","115.29.138.87","localhost","127.0.0.1"],
+      ref  : "origin/master",
+      repo : "git@115.29.138.87:study1234.git",
+      path : "~/node_publish/development",
+      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env dev",
+      env  : {
+        NODE_ENV: "dev"
+      }
+    }
+  }
+}

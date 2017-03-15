@@ -1,0 +1,23 @@
+{
+  "apps" : [
+  {
+    "name"        : "study1234",
+    "script"      : "app.js",
+    "watch"       : true,
+    "instances"  : 1,
+    "exec_mode"  : "fork",
+    "log_date_format": "YYYY-MM-DD HH:mm Z",
+    "log_file": "../logs/study1234.log",
+    "error_file": "../logs/study1234-err.log",
+    "out_file": "../logs/study1234-out.log",
+    "pid_file": "../logs/study1234.pid",
+    "env": {
+      "NODE_ENV": "development",
+      "PORT": 3000
+    },
+    "env_production" : {
+       "NODE_ENV": "production",
+       "PORT": 3001
+    }
+  }]
+}

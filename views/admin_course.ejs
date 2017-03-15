@@ -1,0 +1,61 @@
+<% include admin_header.ejs %>
+<div class="admin-right-container">
+	<div class="btn-toolbar">
+		<a href="/admin/course/edit">
+			<button class="btn btn-primary">添加新课程</button>
+		</a>
+	</div>
+	<div class="admin-list">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>课程名称</th>
+					<th>价格</th>
+					<th>难度</th>
+					<th>分类</th>
+					<th>添加时间</th>
+					<th>内容管理</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if( courses && courses.length > 0){ %>
+						<% courses.forEach(function(course) { %>
+							<tr>
+								<td><%= course.id %></td>
+								<td><%= course.title %></td>
+								<td><%= course.price > 0 ? course.price : '免费'%></td>
+								<td>
+								<% if( course.level == 1 ){ %>
+									基础
+								<%} else {%>
+									进阶
+								<%}%>									
+								</td>
+								<td><%= course.study_course_category.name %></td>
+								<td><%= moment(course.createdAt).format("YYYY-MM-DD HH:mm:ss") %></td>
+								<td><a href="/admin/course/contents/<%= course.id %>">编辑</a></td>
+								<td>
+								<a href="/admin/course/edit/<%= course.id %>"><i class="glyphicon glyphicon-edit"></i></a>&nbsp&nbsp
+								<a href="/admin/course/remove/<%= course.id %>" onclick="return confirm('确认删除');" ><i class="glyphicon glyphicon-remove"></i></a>
+								</td>
+							</tr>
+						<% }) %>
+				<% } %>
+			</tbody>
+		</table>
+		<% if(page) {%>
+			<ul id="courses-pagination" class="pagination-sm"></ul>
+		<% } %>
+	</div>
+</div>
+<script>
+	$('#courses-pagination').twbsPagination({
+        totalPages: <%= locals.page.totalPages %>,
+        visiblePages: 5,
+        href = "<%= locals.page.url %>" + page;
+    });
+
+</script>
+<% include admin_footer.ejs %>

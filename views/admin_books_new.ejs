@@ -1,0 +1,126 @@
+<% include admin_header.ejs %>
+<link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+<link href="/css/bootstrap-markdown.min.css" rel="stylesheet" media="screen">
+<div class="admin-right-container">
+	<h2><%= title %></h2><hr>
+	<form class="admin-form" role="form" enctype="multipart/form-data" method="post">
+		<% if (error) { %>
+			<div class="alert alert-danger alert-dismissable">
+			   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      	<%= error %>
+		    </div>
+	    <% } %>
+		<fieldset>
+			<div class="form-group">
+				<label for="name">名称</label>
+				<input type="text" class="form-control" id="name" name="name" <% if (book && book.name) { %>value="<%= book.name %>"<%}%> required>
+			</div>
+			<div class="form-group">
+				<label for="publishing_house">出版社</label>
+				<input type="text" class="form-control" id="publishing_house" name= "publishing_house" placeholder="请输入出版社名称" <% if (book && book.publishing_house) { %>value="<%= book.publishing_house %>"<%}%> required>
+			</div>
+			<div class="form-group">
+				<label for="summary">简介</label>
+				<textarea class="form-control" id="summary" name= "summary" required><% if (book && book.summary) { %> <%= book.summary %><%}%></textarea>
+			</div>
+			<div class="form-group">
+				<label for="publishing_date">出版时间</label>
+                <div class="input-group date form_date col-md-5" data-date="<% if (book && book.publishing_date) { %> <%= book.publishing_date %> <%}%>" data-date-format="dd MM yyyy" data-link-field="publishing_date" data-link-format="yyyy-mm-dd">
+                    <input class="form-control" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                </div>				
+				<input type="hidden" id="publishing_date" <% if (book && book.publishing_date) { %> value="<%= book.publishing_date %>" <%}%> name= "publishing_date" /><br/>
+
+			</div>
+			<div class="form-group">
+				<label for="downloadurl">豆瓣评分</label>
+				<input type="text" class="form-control" id="douban_rate" name= "douban_rate" placeholder="请输入豆瓣评分" <% if (book && book.douban_rate) { %>value="<%= book.douban_rate %>"<%}%> >
+			</div>
+			<div class="form-group">
+				<label for="downloadurl">下载地址</label>
+				<input type="text" class="form-control" id="downloadurl" name= "downloadurl" placeholder="请输入下载地址" <% if (book && book.download_url) { %>value="<%= book.download_url %>"<%}%> required>
+			</div>
+			<div class="form-group">
+				<label for="downloadurl">下载说明</label>
+				<input type="text" class="form-control" id="download_remark" name= "download_remark" placeholder="请输入下载说明" <% if (book && book.download_remark) { %>value="<%= book.download_remark %>"<%}%> >
+			</div>
+			<div class="form-group">
+				<label for="downloadurl">购买地址</label>
+				<input type="text" class="form-control" id="buy_url" name= "buy_url" placeholder="请输入购买地址" <% if (book && book.buy_url) { %>value="<%= book.buy_url %>"<%}%>>
+			</div>
+			<div class="form-group">
+				<label for="downloadurl">购买说明</label>
+				<input type="text" class="form-control" id="buy_remark" name= "buy_remark" placeholder="请输入购买说明" <% if (book && book.buy_remark) { %>value="<%= book.buy_remark %>"<%}%> >
+			</div>
+			<div class="form-group">
+				<label for="category">分类</label>
+				<select class="form-control" name = "category" required>
+					<% if(categories) { %>
+						<% categories.forEach(function(category) { %>
+							<option value=<%= category.id %> 
+								<% if(book && book.book_category_id == category.id) { %>
+									selected = "selected";
+								<% } %>
+							>
+								<%= category.name %>
+							</option>
+						<% }) %>
+					<% } %>
+				</select>
+			</div>
+			<div class="form-group">
+				<% if(book && book.cover_url) {%>
+					<img src= "/<%- book.cover_url %>" class="img-thumbnail admin-thumbnail"><br>
+				<% } %>
+				<label class="control-label">选择书籍封面</label>
+				<input name="pic" type="file" accept=".jpg,.jpeg"> 
+			</div>
+			<div class="form-group">
+				<label class="control-label">目录</label><br>
+				<textarea name="markdown" data-provide="markdown" type="textarea" id = "content_markdown" ><% if(book && book.markdown) {%><%= book.markdown %>
+				<% } %></textarea>
+			</div>
+			<button type="submit" class="btn btn-primary">保存</button>
+		</fieldset>
+	</form>
+</div>
+<script type="text/javascript" src="/javascripts/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/javascripts/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/javascripts/bootstrap-markdown.min.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	$('.form_date').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+    ////////////////
+    $('#content_markdown').markdown();
+</script>
+<% include admin_footer.ejs %>

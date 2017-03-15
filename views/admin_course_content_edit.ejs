@@ -1,0 +1,33 @@
+<% include admin_header.ejs %>
+<div class="admin-right-container">
+	<h2><%= title %></h2><hr>
+	<form class="admin-form" role="form" method="post">
+		<% if (error) { %>
+			<div class="alert alert-danger alert-dismissable">
+			   <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		      	<%= error %>
+		    </div>
+	    <% } %>
+		<fieldset>
+			<div class="form-group">
+				<label for="name">标题</label>
+				<input type="text" class="form-control" id="title" name="title" placeholder="请输入课程名称" <% if (courseContent && courseContent.title) { %>value="<%= courseContent.title %>"<%}%> required rows="3">
+			</div>
+			<div class="form-group">
+				<label class="control-label">描述</label>
+				<textarea class="form-control" type="textarea" name="description" required rows="3"><% if(courseContent && courseContent.description) {%><%= courseContent.description %>
+				<% } %></textarea>
+			</div>
+			<div class="form-group">
+				<label for="name">时长</label>
+				<input type="text" class="form-control" id="duration" name="duration" placeholder="请输入视频总时长(s)" <% if (courseContent && courseContent.duration) { %>value="<%= courseContent.duration %>"<%}%> required rows="3">
+			</div>
+			<div class="form-group">
+				<label for="name">视频地址</label>
+				<input type="text" class="form-control" id="video_url" name="video_url" placeholder="请输入视频地址" <% if (courseContent && courseContent.video_url) { %>value="<%= courseContent.video_url %>"<%}%> required rows="3">
+			</div>
+			<button type="submit" class="btn btn-primary">保存</button>
+		</fieldset>
+	</form>
+</div>
+<% include admin_footer.ejs %>

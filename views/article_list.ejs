@@ -1,0 +1,73 @@
+<% include header.ejs %>
+<div class="middle-category">
+	<div class="container">
+		<ul class="middle-category-nav" id = "article-categories">
+			<% if( tags && tags.length > 0){ %>
+				<% tags.forEach(function(tag){ %>
+					<li><a href="/article/list/<%- tag.id %>/1"><div class="article-tag"><%= tag.name %>（<%=tag.articles.length%>）</div></a></li>
+				<% }) %>
+			<% } %>
+		</ul>
+	</div>
+</div>
+<div class="row container">
+	<div class="col-md-8 article-list">
+		<table>
+			<thead></thead>
+			<tbody>
+<!-- 		      <div class="recommend-courses" id = "latest-articles">
+		      	<p class="center-block" id="latest-articles-loading">正在努力为您加载,请稍后...</p>
+		      </div> -->
+				<% if( articles && articles.length > 0){ %>
+					<% articles.forEach(function(article){ %>
+						<tr>
+							<td>
+								<article class="article-except">
+									<header>
+										<h4 class="post-title">
+										<a href="/article/detail/<%- article.id %>"><%= article.title %></a>
+										</h4>
+									</header>
+									<section class="post-excerpt">
+										<p><%= article.excerpt %><a class="read-more" href="/article/detail/<%- article.id %>"><button type="button" class="btn btn-success btn-xs btn-readmore">阅读全文</button></a></p>
+									</section>
+									<footer class="articleFooter">
+										<label class="label-author"><% if(article.author) { %><%= article.author.nickname %><%}%></label>
+										<% if( article.tags && article.tags.length > 0){ %>
+											<% article.tags.forEach(function(tag){ %>
+												<a href="/article/list/<%- tag.id %>/1"><button type="button" class="btn btn-info btn-xs"><%= tag.name %></button></a>
+											<% }) %>
+										<% } %>
+										<time class="post-date"><%= moment(article.createdAt).format("YYYY-MM-DD HH:mm:ss")%></time>
+									</footer>
+								</article>
+							</td>
+						</tr>
+					<% }) %>
+				<% } %>
+			</tbody>
+		</table>
+		<div class="text-center">			 
+			<ul id="article-pagination" class="pagination-sm"></ul>
+		</div>
+	</div>
+	<div class="col-md-1"></div>
+	<div class="col-md-3" id="hot-articles">
+	</div>
+</div>
+<% include footer.ejs %>
+<script type="text/javascript">
+	//Paginator
+	$('#article-pagination').twbsPagination({
+	    totalPages: <%- locals.page.totalPages %>,
+	    visiblePages: 5,
+	    href: '{{number}}'
+	    // onPageClick: function (event, page) {
+	    // 	// ajaxArticles(<%- locals.tag %>,<%- locals.page %>);
+
+	    // }
+	});
+
+	//
+	ajaxHotArticles();
+</script>

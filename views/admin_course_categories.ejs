@@ -1,0 +1,46 @@
+<% include admin_header.ejs %>
+<div class="admin-right-container">
+	<div class="btn-toolbar">
+		<a href="/admin/course/category/edit">
+			<button class="btn btn-primary">添加课程分类</button>
+		</a>
+	</div>
+	<div class="admin-list">
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>名称</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if( categories && categories.length > 0){ %>
+					<% categories.forEach(function(category) { %>
+						<tr>
+							<td><%= category.id %></td>
+							<td><%= category.name %></td>
+							<td>
+								<a href="/admin/course/category/edit/<%- category.id %>" ><i class="glyphicon glyphicon-edit"></i></a>&nbsp&nbsp
+								<a href="/admin/course/category/remove/<%- category.id %>" onclick="return confirm('确认删除');"><i class="glyphicon glyphicon-remove"></i></a>
+							</td>
+						</tr>
+					<% }) %>
+				<% } %>
+			</tbody>
+		</table>
+		<% if(page) {%>
+			<ul id="courses-pagination" class="pagination-sm"></ul>
+		<% } %>
+	</div>
+</div>
+<script src="/javascripts/admin_crud.js"></script>
+<script>
+	$('#courses-pagination').twbsPagination({
+        totalPages: <%- locals.page.totalPages %>,
+        visiblePages: 5,
+        href = "<%= locals.page.url %>" + page;
+    });
+
+</script>
+<% include admin_footer.ejs %>

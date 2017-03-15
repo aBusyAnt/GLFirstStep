@@ -1,0 +1,7 @@
+* {margin:0;padding:0;}
+.hand{ cursor:pointer;}
+img{ border:0;}
+ol, ul {list-style: none;}
+a{text-decoration:none;}
+input{vertical-align:middle;}
+.footer{position: fixed;bottom:0px;margin:0 auto;text-align: center;width:100%;color: #999999}

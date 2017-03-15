@@ -1,0 +1,66 @@
+<% include header.ejs %>
+<thirdlib>
+<!-- <link href="/css/video-default.css" rel="stylesheet">
+<script type="text/javascript" src="/javascripts/jquery.video-ui.js"></script>
+ -->
+ <link href="//vjs.zencdn.net/5.8/video-js.min.css" rel="stylesheet">
+<script src="//vjs.zencdn.net/5.8/video.min.js"></script>
+</thirdlib>
+<section>
+  <div class="row course-info">
+    <div class="col-md-3">
+    <img class="thumbnail course-cover-thumbnail" src="/<%- course.cover_url%>">
+    </div>
+    <div class="col-md-8">
+      <h3><%= course.title %></h3>
+      <h5><%= course.tip %></h5>
+      <p><%= course.description %></p>
+      <p><%= moment(course.createdAt).format("YYYY-MM-DD HH:mm:ss") %></p>
+    </div>
+<!--     <div class="col-md-1">
+    <button class="btn btn-success">收藏</button>
+    </div> -->
+</section>
+<section class="main-preview-player">
+<video id="really-cool-video" class="video-js vjs-fluid placeholder vjs-default-skin vjs-big-play-centered" controls
+ preload="auto" width="640" height="264" poster=""
+ data-setup='{}'>
+  <source src="<%- contentUrl %>" type="video/flv">
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a web browser
+    that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+  </p>
+</video>
+</section>
+<section>
+  <div class="panel panel-default download-panel">
+    <div class="panel-heading">
+      <h3 class="panel-title">课程目录</h3>
+    </div>
+    <div class="panel-body">
+      <div class="course-list">
+      <table class="table table-bordered course-content-table">
+        <tbody>       
+          <% if( courseSections && courseSections.length > 0){ %>
+            <% courseSections.forEach(function(section,sectionIndex) { %>
+              <tr>
+                <td colspan="5" class="course-section">第<%= sectionIndex+1 %>章 <%= section.title %></td>
+              </tr>
+              <% if( section.content && section.content.length > 0){ %>
+                <% section.content.forEach(function(courseContent,contentIndex) { %>
+                  <tr>
+                    <td class="course-content-td"><a href="/course/detail/<%- course.id %>/<%- courseContent.id %>"><span class="course-content-title pull-left <%if(courseContent.duration==0){%> \"course-content-updating\"<%}else{%> \"course-content-finished\"<%}%>">课时<%= contentIndex+1 %> <%= courseContent.title %></span> <span class="course-duration pull-right"><script>document.write(formatSeconds(<%- courseContent.duration %>))</script></span></a></td>
+                  </tr>
+                <% }) %>
+              <% } %>
+            <% }) %>
+          <% } %> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="course_<%- course.id %>" data-title="<%- course.title %>" data-url="<%- courseUrl %>/course/detail/<%- course.id %>"></div>
+  <!-- 多说评论框 end -->
+<% include footer.ejs %>
